@@ -1,6 +1,15 @@
 button {
     border: 2px;
     border-color: rgb(70, 5, 92);
-    color: #09338c;
+    color: #015d0d;
     background-color: red;
+    border-radius: 15px;
+    margin: 10px;
+    font-size: large;
+    font-weight: 700;
+    padding: 50px;
+}
+
+h1 {
+    text-align: center;
 }
