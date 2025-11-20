@@ -13,3 +13,9 @@ button {
 h1 {
     text-align: center;
 }
+
+body {
+    background-image: url("Mallikuva/christmas wallpaper.jpg");
+    background-repeat: none;
+    background-size: cover;
+}
