@@ -40,22 +40,77 @@ h1{
   justify-content:center;
   padding:8px;
   position: relative; z-index: 1; /* pidetään kalenteri näkyvänä lumisateen päällä */
+  perspective: 800px; /* lisää perspektiiviä, asettaa nappien tilan (ovet) */
 }
 
 /* Yksinkertaiset luukut: selkeä numerointi, ei turhaa koodia */
 button{
-  width:88px;    /* hieman isompi jotta numerot näkyvät selvemmin */
-  height:88px;   /* hieman isompi */
+  width:120px;
+  height:120px;
+  font-size:24px; /* isompi numero, selkeämpi luukusta avattaessa */
   border-radius:12px;
   border:1px solid rgba(0,0,0,0.08);
   background: var(--btn-bg);
   color: var(--btn-color);
   font-weight:800;
-  font-size:22px; /* isompi numero */
   display:inline-grid;
   place-items:center;
   cursor:pointer;
   transition:transform .14s ease, box-shadow .14s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* etupuoli (luukku/ovi) */
+button .front{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  transform-origin: right center;   /* avautuu oikealta vasemmalle */
+  transition: transform .45s ease;
+  backface-visibility: hidden;
+}
+
+/* kun luukku avataan, koko nappi suurenee jotta takateksti näkyy selkeästi */
+button.open {
+  transform: translateY(-10px) scale(1.18);
+  z-index: 4;
+}
+
+/* takapuoli — teksti pienempänä, ei skrollia */
+button .back{
+  inset: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+  font-size: 11px;    /* pienempi teksti mahtumaan luukun sisälle */
+  line-height: 1.2;
+  color: #123;            /* kontrasti */
+  background: rgba(255,255,255,0.95);
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateX(6px) scale(0.98);
+  transition: opacity .28s ease, transform .28s ease;
+  pointer-events: none;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow: auto;
+}
+
+/* kun avattu: ovi kääntyy, teksti tulee esiin */
+button.open .front{
+  transform: rotateY(-100deg);
+}
+button.open .back{
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  z-index: 3;
+  pointer-events: auto;
 }
 
 /* kevyt hover-efekti */
@@ -67,7 +122,8 @@ button:hover{
 /* mobiili: vähemmän sarakkeita ja napit hieman isommaksi */
 @media (max-width:600px){
   .calendar{ grid-template-columns: repeat(4, auto); gap:12px; }
-  button{ width:92px; height:92px; font-size:22px; }
+  button.open { transform: translateY(-8px) scale(1.08); }
+  button{ width:96px; height:96px; font-size:20px; } /* säilyy aiempi mobiiliarvo */
 }
 
 /* yksinkertainen lumisade-overlay */
