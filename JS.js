@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     f.style.opacity = (0.5 + Math.random() * 0.6).toFixed(2);
     container.appendChild(f);
   }
+<<<<<<< HEAD
 
   // minimal: show message only when a button is clicked
   const messages = [
@@ -57,3 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => btn.classList.toggle('open'));
   });
 });
+=======
+});
+>>>>>>> 2273ec25f93b7a238dcb531fe27b841a81cf249d
