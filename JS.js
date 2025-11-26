@@ -20,7 +20,7 @@ function markCurrentDate () {
 
 function shitfuck3000(id) {
     console.log(`${id}`);
-    if (currentMonth <= 12) {
+    if (currentMonth === 12) {
         if (currentDay === Number(id)) {
             document.getElementById(id).innerHTML = object[id]
 
