@@ -18,7 +18,7 @@ function markCurrentDate () {
     currentDateElem.style.border = "3px solid red";
 }
 
-function shitfuck3000(id) {
+function adventWindowDate(id) {
     console.log(`${id}`);
     if (currentMonth === 12) {
         if (currentDay === Number(id)) {
