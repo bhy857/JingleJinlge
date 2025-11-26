@@ -26,7 +26,7 @@ body{
 
 h1{
   margin:0 0 18px;
-  color:#2b2b2b;
+  color:#fff; /* valkoinen otsikko */
   font-weight:700;
   text-align:center;
 }
@@ -39,6 +39,7 @@ h1{
   align-items:center;
   justify-content:center;
   padding:8px;
+  position: relative; z-index: 1; /* pidetään kalenteri näkyvänä lumisateen päällä */
 }
 
 /* Yksinkertaiset luukut: selkeä numerointi, ei turhaa koodia */
@@ -67,4 +68,33 @@ button:hover{
 @media (max-width:600px){
   .calendar{ grid-template-columns: repeat(4, auto); gap:12px; }
   button{ width:92px; height:92px; font-size:22px; }
+}
+
+/* yksinkertainen lumisade-overlay */
+.snow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.snowflake {
+  position: absolute;
+  top: -10vh;
+  color: #fff;
+  user-select: none;
+  will-change: transform, opacity;
+  opacity: 0.85;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  font-family: serif;
+}
+
+/* yksinkertainen putoamisanimaatio (drift oikealle) */
+@keyframes fall {
+  0% { transform: translate3d(0,-10vh,0) rotate(0deg); }
+  100% { transform: translate3d(80px,110vh,0) rotate(360deg); }
 }
