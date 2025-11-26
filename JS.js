@@ -20,4 +20,4 @@ document.addEventListener('DOMContentLoaded', () => {
     f.style.opacity = (0.5 + Math.random() * 0.6).toFixed(2);
     container.appendChild(f);
   }
-});
+})
