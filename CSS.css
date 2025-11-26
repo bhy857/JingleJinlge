@@ -1,21 +1,70 @@
-button {
-    border: 2px;
-    border-color: rgb(70, 5, 92);
-    color: #015d0d;
-    background-color: red;
-    border-radius: 15px;
-    margin: 10px;
-    font-size: large;
-    font-weight: 700;
-    padding: 50px;
+/* Simppeli ja helposti luettava tyyli - beige tausta, keskitetty kalenteri, väli nappeihin */
+
+:root{
+  --bg: #f0e6d6;     /* beige background (fallback) */
+  --btn-bg: #fff9f5; /* button background */
+  --btn-color: #5b3b1a; /* number color */
 }
 
-h1 {
-    text-align: center;
+html,body{height:100%;margin:0;}
+
+body{
+  /* pidetään mallikuva taustalla (fallback beige) */
+  background-color: var(--bg);
+  background-image: url("Mallikuva/christmas wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  padding:24px;
+  box-sizing:border-box;
 }
 
-body {
-    background-image: url("Mallikuva/christmas wallpaper.jpg");
-    background-repeat: none;
-    background-size: cover;
+h1{
+  margin:0 0 18px;
+  color:#2b2b2b;
+  font-weight:700;
+  text-align:center;
+}
+
+/* Keskitetty kalenteri gridillä; lisätty rako nappien väliin */
+.calendar{
+  display:grid;
+  grid-template-columns: repeat(6, auto); /* 6 saraketta */
+  gap:18px; /* hieman enemmän tilaa luukkujen välillä */
+  align-items:center;
+  justify-content:center;
+  padding:8px;
+}
+
+/* Yksinkertaiset luukut: selkeä numerointi, ei turhaa koodia */
+button{
+  width:88px;    /* hieman isompi jotta numerot näkyvät selvemmin */
+  height:88px;   /* hieman isompi */
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,0.08);
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  font-weight:800;
+  font-size:22px; /* isompi numero */
+  display:inline-grid;
+  place-items:center;
+  cursor:pointer;
+  transition:transform .14s ease, box-shadow .14s ease;
+}
+
+/* kevyt hover-efekti */
+button:hover{
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+/* mobiili: vähemmän sarakkeita ja napit hieman isommaksi */
+@media (max-width:600px){
+  .calendar{ grid-template-columns: repeat(4, auto); gap:12px; }
+  button{ width:92px; height:92px; font-size:22px; }
 }
