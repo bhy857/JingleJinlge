@@ -1,156 +1,168 @@
 /* Simppeli ja helposti luettava tyyli - beige tausta, keskitetty kalenteri, väli nappeihin */
 
 :root{
-  --bg: #f0e6d6;     /* beige background (fallback) */
-  --btn-bg: #fff9f5; /* button background */
-  --btn-color: #5b3b1a; /* number color */
+    --bg: #f0e6d6;     /* beige background (fallback) */
+    --btn-bg: #fff9f5; /* button background */
+    --btn-color: #5b3b1a; /* number color */
 }
 
 html,body{height:100%;margin:0;}
 
 body{
-  /* pidetään mallikuva taustalla (fallback beige) */
-  background-color: var(--bg);
-  background-image: url("Mallikuva/christmas wallpaper.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  padding:24px;
-  box-sizing:border-box;
+    /* pidetään mallikuva taustalla (fallback beige) */
+    background-color: var(--bg);
+    background-image: url("Mallikuva/christmas wallpaper.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    padding:24px;
+    box-sizing:border-box;
 }
 
 h1{
-  margin:0 0 18px;
-  color:#fff; /* valkoinen otsikko */
-  font-weight:700;
-  text-align:center;
+    margin:0 0 18px;
+    color:#fff; /* valkoinen otsikko */
+    font-weight:700;
+    text-align:center;
 }
+h2{
+    margin:0 0 18px;
+    color: #ff0000;
+    font-weight:700;
+    text-align:center;
+}
+ h3{
+     font-size:24px;
+     color: var(--btn-color);
+     font-weight:700;
+     text-align:center;
+ }
 
 /* Keskitetty kalenteri gridillä; lisätty rako nappien väliin */
 .calendar{
-  display:grid;
-  grid-template-columns: repeat(6, auto); /* 6 saraketta */
-  gap:18px; /* hieman enemmän tilaa luukkujen välillä */
-  align-items:center;
-  justify-content:center;
-  padding:8px;
-  position: relative; z-index: 1; /* pidetään kalenteri näkyvänä lumisateen päällä */
-  perspective: 800px; /* lisää perspektiiviä, asettaa nappien tilan (ovet) */
+    display:grid;
+    grid-template-columns: repeat(6, auto); /* 6 saraketta */
+    gap:18px; /* hieman enemmän tilaa luukkujen välillä */
+    align-items:center;
+    justify-content:center;
+    padding:8px;
+    position: relative; z-index: 1; /* pidetään kalenteri näkyvänä lumisateen päällä */
+    perspective: 800px; /* lisää perspektiiviä, asettaa nappien tilan (ovet) */
 }
 
 /* Yksinkertaiset luukut: selkeä numerointi, ei turhaa koodia */
 button{
-  width:120px;
-  height:120px;
-  font-size:24px; /* isompi numero, selkeämpi luukusta avattaessa */
-  border-radius:12px;
-  border:1px solid rgba(0,0,0,0.08);
-  background: var(--btn-bg);
-  color: var(--btn-color);
-  font-weight:800;
-  display:inline-grid;
-  place-items:center;
-  cursor:pointer;
-  transition:transform .14s ease, box-shadow .14s ease;
-  position: relative;
-  overflow: hidden;
+    width:120px;
+    height:120px;
+    font-size:12px; /* isompi numero, selkeämpi luukusta avattaessa */
+    border-radius:12px;
+    border:1px solid rgba(0,0,0,0.08);
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    font-weight:800;
+    display:inline-grid;
+    place-items:center;
+    cursor:pointer;
+    transition:transform .14s ease, box-shadow .14s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 /* etupuoli (luukku/ovi) */
 button .front{
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  z-index: 2;
-  transform-origin: right center;   /* avautuu oikealta vasemmalle */
-  transition: transform .45s ease;
-  backface-visibility: hidden;
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 2;
+    transform-origin: right center;   /* avautuu oikealta vasemmalle */
+    transition: transform .45s ease;
+    backface-visibility: hidden;
 }
 
 /* kun luukku avataan, koko nappi suurenee jotta takateksti näkyy selkeästi */
 button.open {
-  transform: translateY(-10px) scale(1.18);
-  z-index: 4;
+    transform: translateY(-10px) scale(1.18);
+    z-index: 4;
 }
 
 /* takapuoli — teksti pienempänä, ei skrollia */
 button .back{
-  inset: 10px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  z-index: 1;
-  font-size: 11px;    /* pienempi teksti mahtumaan luukun sisälle */
-  line-height: 1.2;
-  color: #123;            /* kontrasti */
-  background: rgba(255,255,255,0.95);
-  border-radius: 8px;
-  opacity: 0;
-  transform: translateX(6px) scale(0.98);
-  transition: opacity .28s ease, transform .28s ease;
-  pointer-events: none;
-  box-sizing: border-box;
-  word-break: break-word;
-  overflow: auto;
+    inset: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+    font-size: 11px;    /* pienempi teksti mahtumaan luukun sisälle */
+    line-height: 1.2;
+    color: #123;            /* kontrasti */
+    background: rgba(255,255,255,0.95);
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateX(6px) scale(0.98);
+    transition: opacity .28s ease, transform .28s ease;
+    pointer-events: none;
+    box-sizing: border-box;
+    word-break: break-word;
+    overflow: auto;
 }
 
 /* kun avattu: ovi kääntyy, teksti tulee esiin */
 button.open .front{
-  transform: rotateY(-100deg);
+    transform: rotateY(-100deg);
 }
 button.open .back{
-  opacity: 1;
-  transform: translateX(0) scale(1);
-  z-index: 3;
-  pointer-events: auto;
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    z-index: 3;
+    pointer-events: auto;
 }
 
 /* kevyt hover-efekti */
 button:hover{
-  transform: translateY(-6px) scale(1.05);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
 }
 
 /* mobiili: vähemmän sarakkeita ja napit hieman isommaksi */
 @media (max-width:600px){
-  .calendar{ grid-template-columns: repeat(4, auto); gap:12px; }
-  button.open { transform: translateY(-8px) scale(1.08); }
-  button{ width:96px; height:96px; font-size:20px; } /* säilyy aiempi mobiiliarvo */
+    .calendar{ grid-template-columns: repeat(4, auto); gap:12px; }
+    button.open { transform: translateY(-8px) scale(1.08); }
+    button{ width:96px; height:96px; font-size:20px; } /* säilyy aiempi mobiiliarvo */
 }
 
 /* yksinkertainen lumisade-overlay */
 .snow {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
 }
 
 .snowflake {
-  position: absolute;
-  top: -10vh;
-  color: #fff;
-  user-select: none;
-  will-change: transform, opacity;
-  opacity: 0.85;
-  animation-name: fall;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-  font-family: serif;
+    position: absolute;
+    top: -10vh;
+    color: #fff;
+    user-select: none;
+    will-change: transform, opacity;
+    opacity: 0.85;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    font-family: serif;
 }
 
 /* yksinkertainen putoamisanimaatio (drift oikealle) */
 @keyframes fall {
-  0% { transform: translate3d(0,-10vh,0) rotate(0deg); }
-  100% { transform: translate3d(80px,110vh,0) rotate(360deg); }
+    0% { transform: translate3d(0,-10vh,0) rotate(0deg); }
+    100% { transform: translate3d(80px,110vh,0) rotate(360deg); }
 }
