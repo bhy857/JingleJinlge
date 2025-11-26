@@ -1,10 +1,7 @@
 // Kertoo nykyisen päivän
-const currentMonth = 12
-const currentDay = 25
-
 const today = new Date();
-//const currentMonth = today.getMonth() + 1;
-//const currentDay = today.getDate();
+const currentMonth = today.getMonth() + 1;
+const currentDay = today.getDate();
 
 //Laitta nykyisen päivän ympärille punaisen reunan
 document.addEventListener('DOMContentLoaded', init)
@@ -13,7 +10,6 @@ function init (){
 }
 
 function markCurrentDate () {
-    console.log("markCurrentDate")
     const tellCurrentDay = "" + currentDay
     const currentDateElem = document.getElementById(tellCurrentDay)
     if (currentDateElem === null) {
@@ -21,6 +17,7 @@ function markCurrentDate () {
     }
     currentDateElem.style.border = "3px solid red";
 }
+
 function shitfuck3000(id) {
     console.log(`${id}`);
     if (currentMonth <= 12) {
